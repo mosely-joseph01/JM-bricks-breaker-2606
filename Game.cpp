@@ -28,7 +28,7 @@ void Game::Reset()
 		currBrick.doubleThick = true;
 		currBrick.color = ConsoleColor::DarkGreen;
 		
-		bricks->push_back(currBrick);
+		bricks.push_back(currBrick);
 	}
 }
 
@@ -73,7 +73,9 @@ void Game::Render() const
 	ball.Draw();
 
 	// TODO #3 - Update render to render all bricks
-	brick.Draw();
+	for (int currBrickIndex = 0; currBrickIndex < bricks.size(); currBrickIndex++) {
+		bricks[currBrickIndex].Draw();
+	}
 
 	Console::Lock(false);
 }

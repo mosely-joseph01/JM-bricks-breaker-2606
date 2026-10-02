@@ -9,7 +9,7 @@ class Game
 	Ball ball;
 	Box paddle;
 
-	std::vector<Box> bricks[5];
+	std::vector<Box> bricks;
 
 public:
 	Game();
