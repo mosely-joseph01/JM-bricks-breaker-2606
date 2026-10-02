@@ -19,7 +19,7 @@ void Game::Reset()
 	ball.color = ConsoleColor::Cyan;
 	ResetBall();
 
-	for (int currBrickIndex = 0; currBrickIndex < 5; currBrickIndex++) {
+	for (int currBrickIndex = 0; currBrickIndex < 1; currBrickIndex++) {
 		Box currBrick;
 		currBrick.width = 10;
 		currBrick.height = 2;
@@ -76,6 +76,10 @@ void Game::Render() const
 		bricks[currBrickIndex].Draw();
 	}
 
+	if (bricks.empty()) {
+		Console::WordWrap(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 33, "You Win! Press 'R' to Play Again!");
+	}
+
 	Console::Lock(false);
 }
 
@@ -90,10 +94,11 @@ void Game::CheckCollision()
 			if (bricks[currBrickIndex].color == ConsoleColor::Black) {
 				bricks.erase(bricks.begin() + currBrickIndex);
 			}
-
 		}
 
-		// TODO #6 - If no bricks remain, pause ball and display (render) victory text with R to reset
+		if (bricks.empty()) {
+			ball.moving = false;
+		}
 
 
 		if (paddle.Contains(ball.x_position + ball.x_velocity, ball.y_velocity + ball.y_position))
