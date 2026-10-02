@@ -19,7 +19,6 @@ void Game::Reset()
 	ball.color = ConsoleColor::Cyan;
 	ResetBall();
 
-	// TODO #2 - Add this brick and 4 more bricks to the vector
 	for (int currBrickIndex = 0; currBrickIndex < 5; currBrickIndex++) {
 		Box currBrick;
 		currBrick.width = 10;
