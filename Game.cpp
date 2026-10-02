@@ -20,12 +20,17 @@ void Game::Reset()
 	ResetBall();
 
 	// TODO #2 - Add this brick and 4 more bricks to the vector
-	brick.width = 10;
-	brick.height = 2;
-	brick.x_position = 0;
-	brick.y_position = 5;
-	brick.doubleThick = true;
-	brick.color = ConsoleColor::DarkGreen;
+	for (int currBrickIndex = 0; currBrickIndex < 5; currBrickIndex++) {
+		Box currBrick;
+		currBrick.width = 10;
+		currBrick.height = 2;
+		currBrick.x_position = 15 * currBrickIndex;
+		currBrick.y_position = 5;
+		currBrick.doubleThick = true;
+		currBrick.color = ConsoleColor::DarkGreen;
+		
+		bricks->push_back(currBrick);
+	}
 }
 
 void Game::ResetBall()
