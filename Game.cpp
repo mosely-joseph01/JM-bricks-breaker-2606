@@ -19,7 +19,7 @@ void Game::Reset()
 	ball.color = ConsoleColor::Cyan;
 	ResetBall();
 
-	for (int currBrickIndex = 0; currBrickIndex < 1; currBrickIndex++) {
+	for (int currBrickIndex = 0; currBrickIndex < 5; currBrickIndex++) {
 		Box currBrick;
 		currBrick.width = 10;
 		currBrick.height = 2;
@@ -77,7 +77,11 @@ void Game::Render() const
 	}
 
 	if (bricks.empty()) {
-		Console::WordWrap(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 33, "You Win! Press 'R' to Play Again!");
+		Console::WordWrap(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 3, 33, "You Win! Press 'R' to Play Again!");
+	}
+
+	if (ball.y_position > paddle.y_position + 1) {
+		Console::WordWrap(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 3, 34, "You Lose, Press 'R' to Play Again!");
 	}
 
 	Console::Lock(false);
@@ -106,6 +110,9 @@ void Game::CheckCollision()
 			ball.y_velocity *= -1;
 		}
 
-		// TODO #7 - If ball touches bottom of window, pause ball and display (render) defeat text with R to reset
+		
+		if (ball.y_position > paddle.y_position + 1) {
+			ball.moving = false;
+		}
 	}
 }
